@@ -1,0 +1,12 @@
+Meeting 1. --  10/17/24
+- present: Sterling, Dr. Knox
+- - Met with the prof Knox and he has explained that I will be in a single team where I will build a small
+    prototype application using 
+
+
+Meeting 2. -- 10/18/24
+-- update jira with most fo the tasks
+-- create the project on git and share with Prof.
+-- validate the all files are committed and base application is working
+
+
