@@ -1,0 +1,4 @@
+.venv
+database/.meteor/local
+.swp
+.angular
