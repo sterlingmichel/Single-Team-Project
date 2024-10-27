@@ -9,4 +9,9 @@ Meeting 2. -- 10/18/24
 -- create the project on git and share with Prof.
 -- validate the all files are committed and base application is working
 
+Meeting 3. -- 10/25/24
+-- update jira and drag complete task to correct section
+-- Create design and take a picture then upload
+-- Create the login page and sign up
+-- begin to define a few routes
 
