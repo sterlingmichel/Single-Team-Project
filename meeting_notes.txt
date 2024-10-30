@@ -15,3 +15,7 @@ Meeting 3. -- 10/25/24
 -- Create the login page and sign up
 -- begin to define a few routes
 
+Meeting 4. -- 10/30/2024
+-- Create a mark description of all the table and column that will be used
+-- Document the methods that will be used
+-- Add description to the use case

@@ -61,5 +61,3 @@ Run `ng generate component component-name` to generate a new component. You can 
 
 The purpose of this project is to help demostrate our ability as a team to colloborate and to produce a small
 a small inventory project....
-
-

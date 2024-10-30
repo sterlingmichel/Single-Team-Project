@@ -3,7 +3,6 @@
 - Login Page
 - Signup Page
 - Home Page
-- Search Page
 - Edit/Add Page
 
 ## Page Description (include a mockup or hand drawn image of the page)
@@ -11,7 +10,6 @@
 - Login Page - It will provide the user the ability to authenticate to the application
 - Signup Page - It will allow the user to become a new authorize user to the application
 - Home Page - It will be the main page that will display a list of contact information
-- Search Page - This will be a popup page that allows the user to search for content
 - Edit/Add Page - It will allow the user to capture the new contact and edit it as well
 
 ## Parameters needed for the page
@@ -19,7 +17,6 @@
 - login -> [username, password]
 - signup -> [firstName, lastName, emailAddress, phoneNumber]
 - home -> [None]
-- search -> [firstName, lastName, emailAddress, phoneNumber]
 - edit -> [firstName, lastName, emailAddress, phoneNumber]
 
 ## Data needed to render the page
@@ -27,7 +24,6 @@
 - login -> /api/login
 - signup -> /api/signup
 - home -> /api/contact/list
-- search -> /api/contact/search
 - add -> /api/contact/add
 - edit -> /api/contact/edit
 
@@ -36,31 +32,33 @@
 - /login
 - /signup
 - /home
-- /search
-- /edit or /add
+- /edit
+- /add
 
 ## List of tests for verifying the rendering of the page
 
 - Login Test [login_test]
 - Signup Test [signup_test]
 - Home Test [home_test]
-- Search Test [search_test]
 - Add Test [add_test]
 - Edit Test [edit_test]
 
 ## Wireframe design
 
-- login page
-<img src="images/login.png" alt="Login Page" WIDTH=40 ALIGN="left" />
+<img src="images/design.jpg" alt="Login Page" WIDTH="140" />
 
-- signup page
-<img src="images/signup.png" alt="Login Page" WIDTH=40 ALIGN="left" />
+## Login Page
 
-- home page
-<img src="images/home.png" alt="Login Page" WIDTH=40 ALIGN="left" />
+<img src="images/login_page.png" alt="Login Page" WIDTH="140" />
 
-- search page
-<img src="images/search.png" alt="Login Page" WIDTH=40 ALIGN="left" />
+## Signup Page
 
-- edit or add page
-<img src="images/editoradd.png" alt="Login Page" WIDTH=40 ALIGN="left" />
+<img src="images/signup_page.png" alt="Login Page" WIDTH="140" />
+
+## Home Page
+
+<img src="images/home_page.png" alt="Login Page" WIDTH="140" />
+
+## Edit or Add page
+
+<img src="images/add_edit_page.png" alt="Edit or Add Page" WIDTH="140" />
