@@ -1,5 +1,9 @@
+## Help generate and document the schema and the methods to be called
 
-## Users
+Track all the tables schema.
+
+
+# Users
 
 Desc: The "users" table will be use to capture the login user information so that we know who each person are.
 Columns:
@@ -10,7 +14,7 @@ Columns:
     - phoneNumber => Optional field to get the login phone
     - comment => Optional field that will provide further information about the use
 
-## Contacts
+# Contacts
 
 Desc: The "contacts" table will be use to capture the contact detail information to help track all the organize.
 Columns:
@@ -25,4 +29,12 @@ Columns:
     - country => Store the country
     - comment => Optional field that will provide where we met and other detail
 
+# Trackings
 
+Desc: The "trackings" table will be use to store the each time the contact was share.
+Columns:
+    - id => automaticly index counter
+    - userId => Reference to the users table to know who created it
+    - contactId => Reference to the contacts table to know who which contact was shared
+    - trackDate => Capture the tracking date
+    - comment => Optional field that will provide where we met and other detail
