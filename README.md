@@ -40,24 +40,16 @@
 
 ## Requirements
 
-* MeteorJS is required for this project [Install MeteorJS](https://www.meteor.com/) (For REST API)
-* NodeJS is required for this project [Install Python](http://www.nodejs.org/downloads) 
-* MongoDB version 4.2+ [Install Mongo](https://www.mongodb.com/) (For Database)
-* Angular 18+ [Install Angular](https://v17.angular.io/guide/setup-local) (For Frontend UI)
+* Flask & Python is required for this project [Install Python](http://www.python.org/downloads) 
+* Postgresql version 4.2+ [Install Postgres](https://www.postgres.org/) (For Database)
+* Plain HTML & Javascript (For Frontend UI)
 
 ## Running
 
-Run `npm start`. This will run `npm install`, start a develompent server.
-
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+pip -r requirement.text. This will run and install the project dependencies, 
+flask run
 
 ## Testing
 
 * will add step to test
 
-## Delivering
-
-The purpose of this project is to help demostrate our ability as a team to colloborate and to produce a small
-a small inventory project....
