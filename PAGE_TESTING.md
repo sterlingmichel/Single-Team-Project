@@ -3,7 +3,8 @@
 - Login Page
 - Signup Page
 - Home Page
-- Edit/Add Page
+- Edit Page
+- Add Page
 
 ## Page Description (include a mockup or hand drawn image of the page)
 
@@ -17,6 +18,7 @@
 - login -> [username, password]
 - signup -> [firstName, lastName, emailAddress, phoneNumber]
 - home -> [None]
+- add -> [firstName, lastName, emailAddress, phoneNumber]
 - edit -> [firstName, lastName, emailAddress, phoneNumber]
 
 ## Data needed to render the page
@@ -42,6 +44,8 @@
 - Home Test [home_test]
 - Add Test [add_test]
 - Edit Test [edit_test]
+- View Test [view_test]
+
 
 ## Wireframe design
 
