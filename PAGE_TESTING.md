@@ -48,21 +48,16 @@
 
 
 ## Wireframe design
-
-<img src="images/design.jpg" alt="Login Page" WIDTH="140" />
+![image](./images/design.jpg)
 
 ## Login Page
-
-<img src="images/login_page.png" alt="Login Page" WIDTH="140" />
+![image](./images/login_page.png)
 
 ## Signup Page
-
-<img src="images/signup_page.png" alt="Login Page" WIDTH="140" />
+![image](./images/signup_page.png)
 
 ## Home Page
-
-<img src="images/home_page.png" alt="Login Page" WIDTH="140" />
+![image](./images/home_page.png)
 
 ## Edit or Add page
-
-<img src="images/add_edit_page.png" alt="Edit or Add Page" WIDTH="140" />
+![image](./images/add_edit_page.png)

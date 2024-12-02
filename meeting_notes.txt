@@ -19,3 +19,13 @@ Meeting 4. -- 10/30/2024
 -- Create a mark description of all the table and column that will be used
 -- Document the methods that will be used
 -- Add description to the use case
+
+Meeting 5. -- 11/7/2024
+-- Choose the programming language
+-- Create new ui potential look
+-- layout sql design
+
+
+Meeting 6. -- 11/15/2024
+-- Begin to out the code implementation
+-- Adding initial database implementation 
