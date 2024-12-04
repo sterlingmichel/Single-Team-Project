@@ -1,25 +1,19 @@
-###############################################################################
-## This is starter code for your Lab 9 JavaScript application
-##
-## The **prefix.py** code is included to allow you to develop your code within
-## the **csel.io** environment.  There is a required prefix to be used when
-## pages access the **csel.io** virtual machine from your local machine browser.
-##
-## The prefix code will have no effect when running Flask on your local machine
-## as it looks to make sure you are running on **csel.io** virtual machine.
-##
-## Author: Knox - Sept 2022
-##
-###############################################################################
-
-
-###############################################################################
-## Import "prefix" code into your Flask app to make your app usable when running
-## Flask either in the csel.io virtual machine or running on your local machine.
-## The module will create an app for you to use
+from flask import (
+    Flask,
+    url_for,
+    render_template,
+    make_response,
+    render_template,
+    jsonify,
+)
+from flask_swagger import swagger
+import psycopg2
+import os
+from psycopg2.extras import RealDictCursor
 import prefix
 
-from flask import Flask, url_for, make_response, render_template
+# define the connection string
+connString = os.environ.get("POSTGRESQL")
 
 # create app to use in this Flask application
 app = Flask(__name__)
@@ -28,22 +22,19 @@ app = Flask(__name__)
 # Calling this routine will have no effect if running on local machine
 prefix.use_PrefixMiddleware(app)   
 
-# test route to show prefix settings
-@app.route('/prefix_url')  
-def prefix_url():
-    return 'The URL for this page is {}'.format(url_for('prefix_url'))
 
-###############################################################################
-## Required Routes for JavaScript Lab include:
-##
-##     1. static text page, "index"   @app.route('/')
-##     2. static text page, "about"   @app.route('/about')
-##     3. static text page, "game"    @app.route('/game')
-##
+
+@app.route("/spec")
+def spec():
+    swag = swagger(app)
+    swag["info"]["version"] = "1.0"
+    swag["info"]["title"] = "Single Team Project"
+    return jsonify(swag)
+
 
 @app.route('/')
 def index():
-
+    pass
 
 
 @app.route("/about")
