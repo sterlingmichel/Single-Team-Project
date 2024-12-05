@@ -111,6 +111,10 @@ def db_view(sql):
 ###############################################################################
 # ROUTE EXPOSE EXTENAL
 ###############################################################################
+@app.route('/check')
+def check():
+    return True
+
 @app.route("/test_db")
 def db_test():
     # Hard coded the connection string
@@ -267,7 +271,7 @@ def api_add_contact():
         data["emailaddress"],
         data["phonenumber"],
         data["address"],
-        data["comment"],
+        data["comment"]
     )
 
     # perform the query
