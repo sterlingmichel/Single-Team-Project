@@ -42,7 +42,6 @@ Contacts table has Many-To-One with Users
 2. when i hit the route "/api/signup" and provide the user detail like first, last and other i expect detail of the user like first
 3. when i hit the route "/api/contact/add" and provide all the detail, i expect an auto generate id
 
-
 ## Database tables, Function & SQL
 
 # Users

@@ -1,4 +1,7 @@
 Flask
+flask-restx
+flasgger
 Gunicorn
 psycopg2-binary==2.9.5
-flask-swagger
+flask-swagger==0.2.14
+flask-swagger-ui==4.11.1

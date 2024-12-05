@@ -3,3 +3,5 @@ database/.meteor/local
 .swp
 .angular
 ~$Presentation.pptx
+backend/bin
+backend/lib

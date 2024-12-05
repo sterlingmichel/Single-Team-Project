@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <title>Welcome to the People Tracking System [SignUp]</title>
+
+        <!-- load the css plugin and app -->
+        <link rel="stylesheet" href="/css/jquery-ui.css" />
+        <link rel="stylesheet" href="/css/app.css" />
+
+        <!-- load the the javascropt plugin and app -->
+        <script type="text/javascript" src="/js/jquery.js"></script>
+        <script type="text/javascript" src="/js/app.js"></script>
+        <base href="/">
+    </head>
+
+    <body>
+        <div class="loginPage">
+            <form class="signForm" action="/api/signup" method="post">
+                <div class="imgcontainer">
+                    <img src="/images/signup_icon.jpg" alt="Avatar" class="avatar">
+                </div>
+
+                <div class="container">
+                    <label for="firstname"><b>First name</b></label>
+                    <input type="text" placeholder="Enter First name" name="firstname" required>
+
+                    <label for="lastname"><b>Last name</b></label>
+                    <input type="text" placeholder="Enter Last name" name="lastname" required>
+
+                    <label for="phonenumber"><b>Phone number</b></label>
+                    <input type="text" placeholder="Phone number" name="phonenumber" required>
+
+                    <label for="emailaddress"><b>Email address</b></label>
+                    <input type="text" placeholder="Enter Email Address" name="emailaddress" required>
+
+                    <label for="passwword"><b>Password</b></label>
+                    <input type="password" placeholder="Enter Password" name="passwword" required>
+
+                    <button type="submit">Signup</button>
+                </div>
+
+                <div class="container">
+                    <span class="psw">Forgot <a href="#">password?</a></span>
+                </div>
+            </form>
+        </div>
+
+    </body>
+
+</html>
