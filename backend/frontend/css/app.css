@@ -61,6 +61,10 @@ div.loginPage {
     position: absolute;
 }
 
+div.text-center {
+    text-align: center;
+}
+
 button.btn {
     display: inline-block;
     width: 80px;
@@ -87,6 +91,11 @@ div.searchDiv {
 div.searchDiv input {
     border-radius: 50rem;
     width: 60%;
+}
+
+div.msg {
+    color: red;
+    padding-left: 20px;
 }
 
 input[type=text],
@@ -144,13 +153,18 @@ img.avatar {
 }
 
 /* "Forgot password" text */
+span.sign {
+    float: left;
+    padding-top: 26px;
+    color: #fff;
+}
+
 span.psw {
     float: right;
     padding-top: 26px;
     color: #fff;
 }
-
-span.psw a {
+span.psw a, span.sign a {
     color: #fff;
 }
 

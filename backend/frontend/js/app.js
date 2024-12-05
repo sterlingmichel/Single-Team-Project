@@ -2,6 +2,36 @@
 // Team: Single Team
 //
 
+$.fn.serializeObject = function () {
+    var o = {};
+    //    var a = this.serializeArray();
+    $(this).find('input[type="hidden"], input[type="text"], input[type="password"], input[type="checkbox"]:checked, input[type="radio"]:checked, select').each(function () {
+        if ($(this).attr('type') == 'hidden') { //if checkbox is checked do not take the hidden field
+            var $parent = $(this).parent();
+            var $chb = $parent.find('input[type="checkbox"][name="' + this.name.replace(/\[/g, '\[').replace(/\]/g, '\]') + '"]');
+            if ($chb != null) {
+                if ($chb.prop('checked')) return;
+            }
+        }
+        if (this.name === null || this.name === undefined || this.name === '')
+            return;
+        var elemValue = null;
+        if ($(this).is('select'))
+            elemValue = $(this).find('option:selected').val();
+        else elemValue = this.value;
+        if (o[this.name] !== undefined) {
+            if (!o[this.name].push) {
+                o[this.name] = [o[this.name]];
+            }
+            o[this.name].push(elemValue || '');
+        } else {
+            o[this.name] = elemValue || '';
+        }
+    });
+    return o;
+}
+
+
 function addContact() {
     $("#dialog-create").dialog({
         resizable: false,
@@ -65,7 +95,7 @@ function doDelete(refId) {
 function doView(address) {
     const url = "https://maps.google.com/maps?f=q&source=s_q&hl=en&geocode=&q=" + address + "&aq=&ie=UTF8&hq=" + address + "&output=embed";
     $('#addressLocation').attr('src', url);
-    
+
     $("#dialog-view").dialog({
         resizable: false,
         height: 600,
@@ -76,7 +106,6 @@ function doView(address) {
 
     return false;
 }
-
 
 function home() {
     const jqxhr = $.ajax("/api/list_contact")
@@ -100,7 +129,7 @@ function home() {
                     <img src="/images/map_icon.png" onclick="doView('${row[4]}')"/>
                 `
                 tr.appendChild(tdicon);
-        
+
                 const tdedit = document.createElement('td');
                 tdedit.innerHTML = `
                     <button class="btn edit" onclick="doEdit(${x})">Edit</button>
@@ -121,10 +150,34 @@ function home() {
 };
 
 
+function doSignup(f) {
+    const formData = $(f).serializeObject();
+    console.log(formData);
+    $.ajax({
+        contentType: "application/json",
+        type: "POST",
+        url: "/api/signup",
+        data: JSON.stringify(formData),
+        success: function (response) {
+            // Handle the response from the server
+            $('#msg')[0].innerHTML = response.info;
+
+            // clear the screen
+            if (response.status) {
+                f.reset();
+            }
+            console.log(response);
+        }
+    });
+
+
+    return false;
+}
+
+
+
 
 $(document).ready(() => {
-    console.log("ready...", location)
-
     if (location.pathname === '/home.html') {
         home();
     }

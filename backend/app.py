@@ -4,9 +4,10 @@ from flask import (
     render_template,
     make_response,
     jsonify,
+    request,
     send_from_directory,
 )
-
+from markupsafe import escape
 from flask_swagger import swagger
 from flask_swagger_ui import get_swaggerui_blueprint
 from flasgger import Swagger, LazyString, LazyJSONEncoder
@@ -14,6 +15,7 @@ from flasgger import Swagger, LazyString, LazyJSONEncoder
 
 import psycopg2
 import os
+import requests
 from psycopg2.extras import RealDictCursor
 
 # define the connection string
@@ -35,10 +37,57 @@ swaggerui_blueprint = get_swaggerui_blueprint(
 )
 
 app.register_blueprint(swaggerui_blueprint)
-app.config.SWAGGER_UI_DOC_EXPANSION = 'list'
+app.config.SWAGGER_UI_DOC_EXPANSION = "list"
 app.config.SWAGGER_UI_OPERATION_ID = True
 app.config.SWAGGER_UI_REQUEST_DURATION = True
 app.json_encoder = LazyJSONEncoder
+
+
+###############################################################################
+# PRIVATE METHOD INTERNAL
+###############################################################################
+def db_insert(sql):
+    # Retrieve Hard coded the connection string in terminal for security
+    conn = psycopg2.connect(connString)
+
+    # Establish a cursor
+    cur = conn.cursor()
+
+    try:
+        # now execute the query
+        cur.execute(sql)
+
+        # Save the update
+        conn.commit()
+
+        # set the message
+        info = "Successfully added record"
+        status = True
+    except Exception as err:
+        info = str(err)
+        status = False
+
+    # close the cursor connection
+    cur.close()
+
+    # release the db connection
+    conn.close()
+
+    print(sql, info)
+    return {"info": info, "status": status}
+
+
+###############################################################################
+# ROUTE EXPOSE EXTENAL
+###############################################################################
+@app.route("/test_db")
+def db_test():
+    # Hard coded the connection string
+    conn = psycopg2.connect(connString)
+
+    # close the active session
+    conn.close()
+    return {"info": "Database connection was successfull"}
 
 
 @app.route(API_URL)
@@ -54,18 +103,23 @@ def serve_web_folder(filename):
     return send_from_directory("frontend", filename)
 
 
-@app.route('/')
+@app.route("/")
 def index():
     return make_response(render_template("index.html"))
 
 
-@app.route("/login.html")
+@app.route("/login.html", methods=["GET", "POST"])
 def login():
     return make_response(render_template("html/login.html"))
 
 
-@app.route("/signup.html")
+@app.route("/signup.html", methods=["GET", "POST"])
 def signup():
+    # if request.method == "POST":
+    #     data = jsonify(request.form).get_json()
+    #     response = requests.post(request.url_root + "/api/signup", data=data)
+    #     # print(request.url_root)
+    #     # print(data)
     return make_response(render_template("html/signup.html"))
 
 
@@ -82,23 +136,10 @@ def about():
 ###############################################################################
 # DEFINE ALL THE API
 ###############################################################################
-@app.route("/api/login", methods=["GET"])
+@app.route("/api/login", methods=["POST"])
 def api_login():
     """
-        This is login page of the project that capture the user infomation.
-        ---
-        responses:
-            200:
-                description: The singup capture user detail
-    """
-    result = {}
-    return jsonify(result)
-
-
-@app.route("/api/signup", methods=["GET"])
-def api_signup():
-    """
-    This is signup page of the project that capture the user infomation.
+    This is login page of the project that capture the user infomation.
     ---
     responses:
         200:
@@ -108,14 +149,45 @@ def api_signup():
     return jsonify(result)
 
 
+@app.route("/api/signup", methods=["POST"])
+def api_signup():
+    """
+     This is login page of the project that capture the user infomation.
+    ---
+    responses:
+        200:
+            description: The singup capture user detail
+    """
+    # retrieve the post data from client`
+    data = request.get_json()
+
+    # build the sql command to run
+    sql = """
+        INSERT INTO public.users ("firstName", "lastName", "emailAddress", "phoneNumber", "passwd", "commentInfo") 
+        VALUES('{}', '{}', '{}', '{}', '{}', '{}')
+    """.format(
+        data["firstname"],
+        data["lastname"],
+        data["emailaddress"],
+        data["phonenumber"],
+        data["passwword"],
+        "This is a default comment",
+    )
+
+    # perform the query
+    status = db_insert(sql)
+
+    return jsonify(status)
+
+
 @app.route("/api/list_contact", methods=["GET"])
 def api_list_contact():
     """
-        This is home page of the project that display the user infomation.
-        ---
-        responses:
-            200:
-                description: The home display all user detail
+    This is home page of the project that display the user infomation.
+    ---
+    responses:
+        200:
+            description: The home display all user detail
     """
     result = {
         "data": [
@@ -150,7 +222,7 @@ def api_list_contact():
 
 ###############################################################################
 # main driver function
-if __name__ == '__main__':
-    # run() method of Flask class runs the application 
+if __name__ == "__main__":
+    # run() method of Flask class runs the application
     # on the local development server using port 3308 instead of port 5000.
-    app.run(host='0.0.0.0', port=40000)
+    app.run(host="0.0.0.0", port=40000)
