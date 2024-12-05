@@ -41,7 +41,6 @@ app.config.SWAGGER_UI_OPERATION_ID = True
 app.config.SWAGGER_UI_REQUEST_DURATION = True
 
 
-
 ###############################################################################
 # PRIVATE METHOD INTERNAL
 ###############################################################################
@@ -113,7 +112,7 @@ def db_view(sql):
 ###############################################################################
 @app.route('/check')
 def check():
-    return True
+    return "OK"
 
 @app.route("/test_db")
 def db_test():
@@ -278,6 +277,72 @@ def api_add_contact():
     status = db_insert(sql)
 
     return jsonify(status)
+
+
+@app.route("/api/edit_contact", methods=["POST"])
+def api_edit_contact():
+    """
+     This is edit contact page of the project that capture the user infomation.
+    ---
+    responses:
+        200:
+            description: The edit contact capture contact detail
+    """
+    # need to retrieve from session
+    userId = 1
+
+    # retrieve the post data from client`
+    data = request.get_json()
+
+    # build the sql command to run
+    sql = """
+        UPDATE public.contacts 
+            userId='{}', 
+            firstName='{}', 
+            lastName='{},
+            emailAddress='{}', 
+            phoneNumber='{}', 
+            address='{}',
+            commentInfo='{}'
+    """.format(
+        userId,
+        data["firstname"],
+        data["lastname"],
+        data["emailaddress"],
+        data["phonenumber"],
+        data["address"],
+        data["comment"],
+    )
+
+    # perform the query
+    status = db_insert(sql)
+
+    return jsonify(status)
+
+
+@app.route("/api/delete_contact", methods=["POST"])
+def api_delete_contact():
+    """
+     This is delete contact page of the project that capture the user infomation.
+    ---
+    responses:
+        200:
+            description: The delete contact capture contact detail
+    """
+    # need to retrieve from session
+    userId = 1
+
+    # retrieve the post data from client`
+    data = request.get_json()
+
+    # build the sql command to run
+    sql = """DELETE public.contacts WHERE id = '{}' """.format(data['id'])
+
+    # perform the query
+    status = db_insert(sql)
+
+    return jsonify(status)
+
 
 
 ###############################################################################
