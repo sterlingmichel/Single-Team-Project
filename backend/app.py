@@ -73,8 +73,40 @@ def db_insert(sql):
     # release the db connection
     conn.close()
 
-    print(sql, info)
     return {"info": info, "status": status}
+
+
+def db_view(sql):
+    # Hard coded the connection string
+    conn = psycopg2.connect(connString)
+
+    # Establish a cursor
+    cur = conn.cursor(cursor_factory=RealDictCursor)
+
+    try:
+        # now execute the query
+        cur.execute(sql)
+
+        # Query the table
+        records = cur.fetchall()
+
+        # set the message
+        info = "Successfully fetch record"
+
+        # set the status
+        status = True
+    except Exception as err:
+        info = str(err)
+        status = False
+        records = []
+
+    # close the cursor connection
+    cur.close()
+
+    # release the db connection
+    conn.close()
+
+    return {"info": info, "records": records}
 
 
 ###############################################################################
@@ -189,35 +221,60 @@ def api_list_contact():
         200:
             description: The home display all user detail
     """
-    result = {
-        "data": [
-            [
-                "Sterling",
-                "Michel",
-                "sterlingmichel@gmail.com",
-                "5166667932",
-                "1200 Sunset way erie, co 80516",
-                "We met in NY",
-            ],
-            [
-                "Guerdy ",
-                "Michel",
-                "guerdymichel@gmail.com",
-                "2166667932",
-                "639 Nostrand way Uniondale, NY 11552",
-                "We met in Queens",
-            ],
-            [
-                "Jean ",
-                "Carter",
-                "jcarter@gmail.com",
-                "3146667912",
-                "23 Brighton ave Pleasantville, NJ 08232",
-                "We met in Atlantic city",
-            ],
-        ]
-    }
+    # need to retrieve from session
+    userId = 1
+
+    qry = """
+        SELECT "id", "userId", "firstName", "lastName", "emailAddress", "phoneNumber", "address", "commentInfo"
+        FROM public.contacts
+        WHERE "userId" = '{}'
+        ORDER BY "lastName"
+    
+    """.format(
+        userId
+    )
+    # build the query
+    data = db_view(qry)
+
+    # set the output
+    result = {"data": data}
+
     return jsonify(result)
+
+
+@app.route("/api/add_contact", methods=["POST"])
+def api_add_contact():
+    """
+     This is add contact page of the project that capture the user infomation.
+    ---
+    responses:
+        200:
+            description: The add contact capture contact detail
+    """
+    # need to retrieve from session
+    userId = 1
+
+    # retrieve the post data from client`
+    data = request.get_json()
+
+    # build the sql command to run
+    sql = """
+        INSERT INTO public.contacts ("userId", "firstName", "lastName", "emailAddress", "phoneNumber", "address", "commentInfo") 
+        VALUES('{}', '{}', '{}', '{}', '{}', '{}', '{}')
+    """.format(
+        userId,
+        data["firstname"],
+        data["lastname"],
+        data["emailaddress"],
+        data["phonenumber"],
+        data["address"],
+        data["comment"],
+    )
+
+    # perform the query
+    status = db_insert(sql)
+
+    return jsonify(status)
 
 
 ###############################################################################

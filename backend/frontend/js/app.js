@@ -2,10 +2,11 @@
 // Team: Single Team
 //
 
+// helper method
 $.fn.serializeObject = function () {
     var o = {};
     //    var a = this.serializeArray();
-    $(this).find('input[type="hidden"], input[type="text"], input[type="password"], input[type="checkbox"]:checked, input[type="radio"]:checked, select').each(function () {
+    $(this).find('textarea, input[type="hidden"], input[type="text"], input[type="password"], input[type="checkbox"]:checked, input[type="radio"]:checked, select').each(function () {
         if ($(this).attr('type') == 'hidden') { //if checkbox is checked do not take the hidden field
             var $parent = $(this).parent();
             var $chb = $parent.find('input[type="checkbox"][name="' + this.name.replace(/\[/g, '\[').replace(/\]/g, '\]') + '"]');
@@ -31,26 +32,6 @@ $.fn.serializeObject = function () {
     return o;
 }
 
-
-function addContact() {
-    $("#dialog-create").dialog({
-        resizable: false,
-        height: 860,
-        width: 800,
-        modal: true,
-        title: "Add new contact",
-        buttons: {
-            Cancel: function () {
-                $(this).dialog("close");
-            },
-            Save: function () {
-                $(this).dialog("close");
-            }
-        }
-    });
-
-    return false;
-}
 
 function doEdit(refId) {
     $("#dialog-edit").dialog({
@@ -108,25 +89,32 @@ function doView(address) {
 }
 
 function home() {
-    const jqxhr = $.ajax("/api/list_contact")
+    $.ajax("/api/list_contact")
         .done(function (resp) {
+
+            // get dom referent to table
             const table = $("#myHomeTable");
 
-            resp.data.forEach((row, x) => {
+            // get dom reference for tbody
+            const tbody = table[0].getElementsByTagName('tbody')[0];
+            tbody.innerHTML = "";
+
+            resp.data.records.forEach((row, x) => {
                 const tr = document.createElement('tr');
                 const tdcnt = document.createElement('td');
                 tdcnt.innerHTML = x + 1;
                 tr.appendChild(tdcnt);
 
-                row.forEach((col) => {
-                    const td = document.createElement('td');
-                    td.innerHTML = col;
-                    tr.appendChild(td);
-                });
+                ['firstName', 'lastName', 'emailAddress', 'phoneNumber', 'address', 'commentInfo']
+                    .forEach((col) => {
+                        const td = document.createElement('td');
+                        td.innerHTML = row[col];
+                        tr.appendChild(td);
+                    });
 
                 const tdicon = document.createElement('td');
                 tdicon.innerHTML = `
-                    <img src="/images/map_icon.png" onclick="doView('${row[4]}')"/>
+                    <img src="/images/map_icon.png" onclick="doView('${row['address']}')"/>
                 `
                 tr.appendChild(tdicon);
 
@@ -137,7 +125,8 @@ function home() {
                 `
                 tr.appendChild(tdedit);
 
-                table[0].getElementsByTagName('tbody')[0].appendChild(tr)
+                // push the row data
+                tbody.appendChild(tr)
             });
 
             setTimeout(() => {
@@ -149,10 +138,8 @@ function home() {
         });
 };
 
-
 function doSignup(f) {
     const formData = $(f).serializeObject();
-    console.log(formData);
     $.ajax({
         contentType: "application/json",
         type: "POST",
@@ -166,7 +153,6 @@ function doSignup(f) {
             if (response.status) {
                 f.reset();
             }
-            console.log(response);
         }
     });
 
@@ -174,7 +160,47 @@ function doSignup(f) {
     return false;
 }
 
+function addContact() {
+    $("#dialog-create").dialog({
+        resizable: false,
+        height: 860,
+        width: 800,
+        modal: true,
+        title: "Add new contact",
+        buttons: {
+            Cancel: function () {
+                $(this).dialog("close");
+            },
+            Save: function () {
+                const self = $(this);
 
+                // capture the form input
+                const form = $("#createContact")
+                const formData = form.serializeObject();
+
+                $.ajax({
+                    contentType: "application/json",
+                    type: "POST",
+                    url: "/api/add_contact",
+                    data: JSON.stringify(formData),
+                    success: function (response) {
+                        // // Handle the response from the server
+                        // $('#msg')[0].innerHTML = response.info;
+
+                        // clear the screen
+                        if (response.status) {
+                            form[0].reset();
+                            home();
+                            self.dialog("close");
+                        }
+                    }
+                });
+            }
+        }
+    });
+
+    return false;
+}
 
 
 $(document).ready(() => {
