@@ -33,18 +33,36 @@ $.fn.serializeObject = function () {
 }
 
 
-function doEdit(refId) {
+function doEdit(rowData) {
     $("#dialog-edit").dialog({
         resizable: false,
         height: 860,
         width: 800,
         modal: true,
-        title: "Edit contact for refId: " + refId,
+        title: "Edit contact",
+        open: function() {
+            // capture the form input
+            const form = $("#editContact")
+            // const formData = form.serializeObject();
+
+
+            // const gridTrData = $('#myHomeTable tbody tr');
+            console.log("===", rowData)
+
+            // $(this)
+            //     .find('textarea, input[type="hidden"], input[type="text"], input[type="password"], input[type="checkbox"]:checked, input[type="radio"]:checked, select')
+            //     .each(function () {
+            //         console.log(this.name)
+
+            //     });
+
+        },
         buttons: {
             Cancel: function () {
                 $(this).dialog("close");
             },
             Save: function () {
+               
                 $(this).dialog("close");
             }
         }
@@ -114,14 +132,14 @@ function home() {
 
                 const tdicon = document.createElement('td');
                 tdicon.innerHTML = `
-                    <img src="/images/map_icon.png" onclick="doView('${row['address']}')"/>
+                    <img src="/images/map_icon.png" onclick="doView('row['address']}')"/>
                 `
                 tr.appendChild(tdicon);
 
                 const tdedit = document.createElement('td');
                 tdedit.innerHTML = `
-                    <button class="btn edit" onclick="doEdit(${x})">Edit</button>
-                    <button class="btn delete" onclick="doDelete(${x})">Delete</button>
+                    <button class="btn edit" onclick="doEdit('${JSON.stringify(row)}')">Edit</button>
+                    <button class="btn delete" onclick="doDelete(row['id'])">Delete</button>
                 `
                 tr.appendChild(tdedit);
 

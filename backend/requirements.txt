@@ -1,6 +1,5 @@
 Flask
 flask-restx
-flasgger
 requests
 Gunicorn
 psycopg2-binary==2.9.5

@@ -10,7 +10,6 @@ from flask import (
 from markupsafe import escape
 from flask_swagger import swagger
 from flask_swagger_ui import get_swaggerui_blueprint
-from flasgger import Swagger, LazyString, LazyJSONEncoder
 
 
 import psycopg2
@@ -40,7 +39,7 @@ app.register_blueprint(swaggerui_blueprint)
 app.config.SWAGGER_UI_DOC_EXPANSION = "list"
 app.config.SWAGGER_UI_OPERATION_ID = True
 app.config.SWAGGER_UI_REQUEST_DURATION = True
-app.json_encoder = LazyJSONEncoder
+
 
 
 ###############################################################################
