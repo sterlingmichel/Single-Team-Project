@@ -45,7 +45,6 @@ function doEdit(rowData) {
             const form = $("#editContact")
             // const formData = form.serializeObject();
 
-
             // const gridTrData = $('#myHomeTable tbody tr');
             console.log("===", rowData)
 
@@ -80,7 +79,17 @@ function doDelete(refId) {
         title: "Deleting contact",
         buttons: {
             Delete: function () {
-                $(this).dialog("close");
+                // $(this).dialog("close");
+                $.ajax({
+                    contentType: "application/json",
+                    type: "DELETE",
+                    url: "/api/delete_contact",
+                    data: JSON.stringify({"id": refId}),
+                    success: function (response) {
+
+                        console.log("==", response);
+                    }
+                });
             },
             Cancel: function () {
                 $(this).dialog("close");
