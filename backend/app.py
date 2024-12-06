@@ -175,6 +175,18 @@ def api_login():
     """
     This is login page of the project that capture the user infomation.
     ---
+    tags:
+     - Initial Route Define
+    parameters:
+      - in: body
+        name: body
+        schema:
+          type: object
+          properties:
+            emailAddress:
+              type: string
+            password:
+                type: string
     responses:
         200:
             description: The singup capture user detail
@@ -188,6 +200,26 @@ def api_signup():
     """
      This is login page of the project that capture the user infomation.
     ---
+    tags:
+     - Initial Route Define
+    parameters:
+      - in: body
+        name: body
+        schema:
+          type: object
+          properties:
+            firstname:
+              type: string
+            lastname:
+              type: string
+            emailAddress:
+              type: string
+            phoneNumber:
+              type: string
+            password:
+              type: string
+            commentInfo:
+                type: string
     responses:
         200:
             description: The singup capture user detail
@@ -219,6 +251,8 @@ def api_list_contact():
     """
     This is home page of the project that display the user infomation.
     ---
+    tags:
+     - Initial Route Define
     responses:
         200:
             description: The home display all user detail
@@ -249,6 +283,26 @@ def api_add_contact():
     """
      This is add contact page of the project that capture the user infomation.
     ---
+    tags:
+     - Initial Route Define
+    parameters:
+      - in: body
+        name: body
+        schema:
+          type: object
+          properties:
+            firstname:
+              type: string
+            lastname:
+              type: string
+            emailAddress:
+              type: string
+            phoneNumber:
+              type: string
+            address:
+              type: string
+            commentInfo:
+                type: string
     responses:
         200:
             description: The add contact capture contact detail
@@ -279,11 +333,33 @@ def api_add_contact():
     return jsonify(status)
 
 
-@app.route("/api/edit_contact", methods=["POST"])
+@app.route("/api/edit_contact", methods=["PUT", "POST"])
 def api_edit_contact():
     """
      This is edit contact page of the project that capture the user infomation.
     ---
+    tags:
+     - Initial Route Define
+    parameters:
+      - in: body
+        name: body
+        schema:
+          type: object
+          properties:
+            id:
+              type: string
+            firstname:
+              type: string
+            lastname:
+              type: string
+            emailAddress:
+              type: string
+            phoneNumber:
+              type: string
+            address:
+              type: string
+            commentInfo:
+                type: string
     responses:
         200:
             description: The edit contact capture contact detail
@@ -320,11 +396,21 @@ def api_edit_contact():
     return jsonify(status)
 
 
-@app.route("/api/delete_contact", methods=["POST"])
+@app.route("/api/delete_contact", methods=["POST", "DELETE"])
 def api_delete_contact():
     """
      This is delete contact page of the project that capture the user infomation.
     ---
+    tags:
+     - Initial Route Define
+    parameters:
+      - in: body
+        name: body
+        schema:
+          type: object
+          properties:
+            id:
+              type: string
     responses:
         200:
             description: The delete contact capture contact detail
@@ -342,7 +428,6 @@ def api_delete_contact():
     status = db_insert(sql)
 
     return jsonify(status)
-
 
 
 ###############################################################################

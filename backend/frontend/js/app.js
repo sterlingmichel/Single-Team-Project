@@ -132,14 +132,14 @@ function home() {
 
                 const tdicon = document.createElement('td');
                 tdicon.innerHTML = `
-                    <img src="/images/map_icon.png" onclick="doView('row['address']}')"/>
+                    <img src="/images/map_icon.png" onclick="doView('${row['address']}')"/>
                 `
                 tr.appendChild(tdicon);
 
                 const tdedit = document.createElement('td');
                 tdedit.innerHTML = `
-                    <button class="btn edit" onclick="doEdit('${JSON.stringify(row)}')">Edit</button>
-                    <button class="btn delete" onclick="doDelete(row['id'])">Delete</button>
+                    <button class="btn edit" onclick="doEdit(${row['id']})">Edit</button>
+                    <button class="btn delete" onclick="doDelete(${row['id']})">Delete</button>
                 `
                 tr.appendChild(tdedit);
 
