@@ -112,10 +112,28 @@ def db_view(sql):
 ###############################################################################
 @app.route('/check')
 def check():
+    """
+     This is validate that the system is running
+    ---
+    tags:
+     - Health Check
+    responses:
+        200:
+            description: Check if system is up
+    """
     return "OK"
 
 @app.route("/test_db")
 def db_test():
+    """
+     This is validate that the database is running
+    ---
+    tags:
+     - Health Check
+    responses:
+        200:
+            description: Database cehck if it is up
+    """
     # Hard coded the connection string
     conn = psycopg2.connect(connString)
 
