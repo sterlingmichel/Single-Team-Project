@@ -19,7 +19,7 @@
 
 ## Risks to project completion
 
-* Learning new languages: HTML, CSS, MongoDB
+* Learning new languages: HTML, CSS, Postgres
 * Using outdated software
 * Schedule conflicts
   
