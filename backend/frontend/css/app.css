@@ -156,16 +156,46 @@ img.avatar {
 span.sign {
     float: left;
     padding-top: 26px;
-    color: #fff;
+    color: #000;
 }
 
 span.psw {
     float: right;
     padding-top: 26px;
-    color: #fff;
+color: #000;
 }
 span.psw a, span.sign a {
-    color: #fff;
+    color: #000;
+}
+
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+}
+
+li {
+    float: left;
+}
+
+li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+/* Change the link color to #111 (black) on hover */
+li a:hover {
+    background-color: #111;
+}
+
+.active {
+    background-color: #04AA6D;
 }
 
 /* Responsive design for smaller screens */

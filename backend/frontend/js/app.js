@@ -32,6 +32,32 @@ $.fn.serializeObject = function () {
     return o;
 }
 
+function doLogin(f) {
+    const formData = $(f).serializeObject();
+    console.log("==", formData)
+    $.ajax({
+        contentType: "application/json",
+        type: "POST",
+        url: "/api/login",
+        data: JSON.stringify(formData),
+        success: function (response) {
+            // Handle the response from the server
+            $('#msg')[0].innerHTML = response.info;
+
+            // clear the screen
+            if (response.status) {
+                sessionStorage.setItem("loginInfo", JSON.stringify(response))
+                f.reset();
+
+                setTimeout(() => {
+                    location.href = "/home.html";
+                }, 2000);
+            }
+        }
+    });
+
+    return false;
+}
 
 function doEdit(rowData) {
     $("#dialog-edit").dialog({
@@ -182,7 +208,6 @@ function doSignup(f) {
             }
         }
     });
-
 
     return false;
 }

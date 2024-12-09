@@ -20,6 +20,16 @@
     </head>
 
     <body>
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#map">View Map</a></li>
+            <li><a href="#contact">Add Contact</a></li>
+            <li><a href="/about.html">About</a></li>
+            <li style="float:right"><a class="active" href="/logout.html">Logout</a></li>
+        </ul>
+
+
+
         <div class="loginPage">
             <div style="visibility: hidden; height: 0px;">
                 <div id="dialog-view">
@@ -29,7 +39,7 @@
 
                 <div id="dialog-edit">
                     <p class="validateTips">All form fields are required to edit and update.</p>
-                    
+
                     <form id="editContact">
                         <fieldset>
                             <label for="name">First Name</label>
@@ -44,7 +54,7 @@
                             <input type="text" name="address" id="address" value="" class="text ui-widget-content ui-corner-all">
                             <label for="password">Memor</label>
                             <textarea for="comment" name="comment" id="comment" style="width: 100%;" rows="8"></textarea>
-                    
+
                             <!-- Allow form submission with keyboard without duplicating the dialog button -->
                             <input type="submit" tabindex="-1" style="position:absolute; top:-1000px">
                         </fieldset>

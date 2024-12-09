@@ -6,11 +6,12 @@ from flask import (
     jsonify,
     request,
     send_from_directory,
+    session,
 )
 from markupsafe import escape
 from flask_swagger import swagger
 from flask_swagger_ui import get_swaggerui_blueprint
-
+from flask_bcrypt import Bcrypt
 
 import psycopg2
 import os
@@ -23,6 +24,8 @@ connString = os.environ.get("POSTGRESQL")
 name = "Single Team Project"
 # create app to use in this Flask application
 app = Flask(name, template_folder="frontend")
+app.secret_key = "&N>_*oZW#G]Bj!M/GS=1dX#8r%0Wp+"
+bcrypt = Bcrypt(app)
 
 SWAGGER_URL = "/api/docs"  # URL for exposing Swagger UI (without trailing '/')
 API_URL = "/spec"  # Our API url (can of course be a local resource)
@@ -110,7 +113,7 @@ def db_view(sql):
 ###############################################################################
 # ROUTE EXPOSE EXTENAL
 ###############################################################################
-@app.route('/check')
+@app.route("/check")
 def check():
     """
      This is validate that the system is running
@@ -122,6 +125,7 @@ def check():
             description: Check if system is up
     """
     return "OK"
+
 
 @app.route("/test_db")
 def db_test():
@@ -185,6 +189,12 @@ def about():
     return make_response(render_template("html/about.html"))
 
 
+@app.route("/logout.html")
+def logout():
+    return make_response(render_template("html/logout.html"))
+
+
+
 ###############################################################################
 # DEFINE ALL THE API
 ###############################################################################
@@ -201,7 +211,7 @@ def api_login():
         schema:
           type: object
           properties:
-            emailAddress:
+            emailaddress:
               type: string
             password:
                 type: string
@@ -209,7 +219,41 @@ def api_login():
         200:
             description: The singup capture user detail
     """
-    result = {}
+    # retrieve the post data from client`
+    data = request.get_json()
+
+    # build the sql command to run
+    sql = """SELECT "id", "firstName", "lastName", "passwd" from public.users WHERE "emailAddress" = '{}' LIMIT 1""".format(
+        data["emailaddress"], data["password"]
+    )
+
+    # perform the query
+    result = db_view(sql)
+
+    #  validate the enter user password
+    is_valid = bcrypt.check_password_hash(
+        result["records"][0]["passwd"], data["password"]
+    )
+
+    if is_valid:
+        user = {
+            "status": True,
+            "info": "Login was successfull",
+            "user": {
+                "userId": result["records"][0]["id"],
+                "loginName": "{}".format(
+                    result["records"][0]["firstName"]
+                    + " "
+                    + result["records"][0]["lastName"]
+                ),
+            },
+        }
+        # store the user information
+        session['userInfo'] = user
+
+        return user
+    else:
+        return {"status": False, "info": "Unable to authenticate the user with the given values"}
     return jsonify(result)
 
 
@@ -254,7 +298,7 @@ def api_signup():
         data["lastname"],
         data["emailaddress"],
         data["phonenumber"],
-        data["passwword"],
+        bcrypt.generate_password_hash(data["passwword"]).decode("utf-8"),
         "This is a default comment",
     )
 
@@ -342,7 +386,7 @@ def api_add_contact():
         data["emailaddress"],
         data["phonenumber"],
         data["address"],
-        data["comment"]
+        data["comment"],
     )
 
     # perform the query
@@ -440,7 +484,7 @@ def api_delete_contact():
     data = request.get_json()
 
     # build the sql command to run
-    sql = """DELETE public.contacts WHERE id = '{}' """.format(data['id'])
+    sql = """DELETE public.contacts WHERE id = '{}' """.format(data["id"])
 
     # perform the query
     status = db_insert(sql)
