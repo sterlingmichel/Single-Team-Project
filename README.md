@@ -36,13 +36,13 @@
 
 ## Project Tracking Software
 
-* Trello: <https://trello.com/b/taF2Hqgl>
+* Jira: https://justfritaille.atlassian.net/jira/software/projects/STP/boards/3
 
 ## Requirements
 
 * Flask & Python is required for this project [Install Python](http://www.python.org/downloads) 
 * Postgresql version 4.2+ [Install Postgres](https://www.postgres.org/) (For Database)
-* Plain HTML & Javascript (For Frontend UI)
+* Plain HTML & Jquery, JqueryUI, Javascript (For Frontend UI)
 
 ## Running
 
