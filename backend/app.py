@@ -1,7 +1,9 @@
-"""@package docstring
- This project is designed to demostrate three key features using a range
- of opensource technology like postgres, python, flask and number plugins
- It is created by Sterling Michel for the CS course
+"""
+  @author: Sterling Michel
+  @date: Dec 9th, 20224
+  @desc: This project is designed to demostrate three key features using a range
+          of opensource technology like postgres, python, flask and number plugins
+          It is created by Sterling Michel for the CS course
 """
 
 from flask import (

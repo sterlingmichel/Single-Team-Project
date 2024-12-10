@@ -1,6 +1,7 @@
-// People Contact Information
+// Title: People Contact Information
+// Author: Sterling Michel
 // Team: Single Team
-//
+// Date: No 15th, 2024
 
 // helper method
 $.fn.serializeObject = function () {
@@ -32,6 +33,11 @@ $.fn.serializeObject = function () {
     return o;
 }
 
+/*
+* @desc: Handle the user login action
+* @param: {f} => formObject
+* @return: bool
+*/
 function doLogin(f) {
     const formData = $(f).serializeObject();
     console.log("==", formData)
@@ -59,6 +65,11 @@ function doLogin(f) {
     return false;
 }
 
+/*
+* @desc: Handle the edit action action
+* @param: {rowdata} => array<object>
+* @return: none
+*/
 function doEdit(rowData) {
     $("#dialog-edit").dialog({
         resizable: false,
@@ -96,6 +107,11 @@ function doEdit(rowData) {
     return false;
 }
 
+/*
+* @desc: Handle the delete action
+* @param: {refid} => int
+* @return: bool
+*/
 function doDelete(refId) {
     $("#dialog-confirm").dialog({
         resizable: false,
@@ -126,6 +142,11 @@ function doDelete(refId) {
     return false;
 }
 
+/*
+* @desc: Handle the view of map
+* @param: {address} => string
+* @return: bool
+*/
 function doView(address) {
     const url = "https://maps.google.com/maps?f=q&source=s_q&hl=en&geocode=&q=" + address + "&aq=&ie=UTF8&hq=" + address + "&output=embed";
     $('#addressLocation').attr('src', url);
@@ -141,6 +162,11 @@ function doView(address) {
     return false;
 }
 
+/*
+* @desc: Handle the home apge
+* @param: None
+* @return: None
+*/
 function home() {
     $.ajax("/api/list_contact")
         .done(function (resp) {
@@ -191,6 +217,11 @@ function home() {
         });
 };
 
+/*
+* @desc: Handle the user signup page action
+* @param: {f} => formObject
+* @return: bool
+*/
 function doSignup(f) {
     const formData = $(f).serializeObject();
     $.ajax({
@@ -212,6 +243,11 @@ function doSignup(f) {
     return false;
 }
 
+/*
+* @desc: Handle the user add action
+* @param: None
+* @return: bool
+*/
 function addContact() {
     $("#dialog-create").dialog({
         resizable: false,
@@ -255,7 +291,10 @@ function addContact() {
 }
 
 
+// Wait for the dom to load
 $(document).ready(() => {
+
+    // redirect to home page
     if (location.pathname === '/home.html') {
         home();
     }
