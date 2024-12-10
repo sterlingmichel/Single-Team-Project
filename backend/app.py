@@ -1,3 +1,9 @@
+"""@package docstring
+ This project is designed to demostrate three key features using a range
+ of opensource technology like postgres, python, flask and number plugins
+ It is created by Sterling Michel for the CS course
+"""
+
 from flask import (
     Flask,
     url_for,
@@ -48,6 +54,16 @@ app.config.SWAGGER_UI_REQUEST_DURATION = True
 # PRIVATE METHOD INTERNAL
 ###############################################################################
 def db_insert(sql):
+    """
+    This function adds insert the data to the db base on the sql input.
+
+    Args:
+        sql (str): A series of proper sql insert statment.
+
+    Returns:
+        dict: info field with Information about the action and status field tracking state
+    """
+
     # Retrieve Hard coded the connection string in terminal for security
     conn = psycopg2.connect(connString)
 
@@ -78,6 +94,16 @@ def db_insert(sql):
 
 
 def db_view(sql):
+    """
+    This function adds select the data from the db base on the sql input.
+
+    Args:
+        sql (str): A series of proper sql select statment.
+
+    Returns:
+        dict: info field with Information about the action and records field a list of data founds
+    """
+
     # Hard coded the connection string
     conn = psycopg2.connect(connString)
 
@@ -124,6 +150,15 @@ def check():
         200:
             description: Check if system is up
     """
+    """
+    This function adds select the data from the db base on the sql input.
+
+    Args:
+        sql (str): A series of proper sql select statment.
+
+    Returns:
+        dict: info field with Information about the action and records field a list of data founds
+    """
     return "OK"
 
 
@@ -136,7 +171,16 @@ def db_test():
      - Health Check
     responses:
         200:
-            description: Database cehck if it is up
+            description: Database check if it is up and alive
+    """
+    """
+    This function adds select the data from the db base on the sql input.
+
+    Args:
+        None (None): No arg is needed.
+
+    Returns:
+        dict: info field with Information about the status of the db
     """
     # Hard coded the connection string
     conn = psycopg2.connect(connString)
@@ -148,51 +192,119 @@ def db_test():
 
 @app.route(API_URL)
 def spec():
+    """
+    This function show the content of the spec file.
+
+    Args:
+        None (None): No input needed.
+
+    Returns:
+        dict: return a json of the spec retrieved
+    """
     swag = swagger(app)
     swag["info"]["version"] = "1.0"
     swag["info"]["title"] = "Single Team Project"
+    swag["info"]["author"] = "Sterling Michel"
+    swag["info"]["email"] = "sterlingmichel@gmail.com"
     return jsonify(swag)
 
 
 @app.route("/<path:filename>")
 def serve_web_folder(filename):
+    """
+    This function adds select the data from the db base on the sql input.
+
+    Args:
+        filename (str): capture the filename
+
+    Returns:
+        dict: info field with Information about the action and records field a list of data founds
+    """
     return send_from_directory("frontend", filename)
 
 
 @app.route("/")
 def index():
+    """
+    This function show the content of the index file.
+
+    Args:
+        None (None): No input needed.
+
+    Returns:
+        str: return a html file to be render by the browser
+    """
     return make_response(render_template("index.html"))
 
 
 @app.route("/login.html", methods=["GET", "POST"])
 def login():
+    """
+    This function show the content of the login file.
+
+    Args:
+        None (None): No input needed.
+
+    Returns:
+        str: return a text of html for the browser
+    """
     return make_response(render_template("html/login.html"))
 
 
 @app.route("/signup.html", methods=["GET", "POST"])
 def signup():
-    # if request.method == "POST":
-    #     data = jsonify(request.form).get_json()
-    #     response = requests.post(request.url_root + "/api/signup", data=data)
-    #     # print(request.url_root)
-    #     # print(data)
+    """
+    This function show the content of the signup file.
+
+    Args:
+        None (None): No input needed.
+
+    Returns:
+        dict: return a str html
+    """
     return make_response(render_template("html/signup.html"))
 
 
 @app.route("/home.html")
 def home():
+    """
+    This function show the content of the home file.
+
+    Args:
+        None (None): No input needed.
+
+    Returns:
+        dict: return a json of the spec retrieved
+    """
     return make_response(render_template("html/home.html"))
 
 
 @app.route("/about.html")
 def about():
+    """
+    This function show the content of the about file.
+
+    Args:
+        None (None): No input needed.
+
+    Returns:
+        dict: return a str of html
+    """
     return make_response(render_template("html/about.html"))
 
 
 @app.route("/logout.html")
 def logout():
-    return make_response(render_template("html/logout.html"))
+    """
+    This function show the content of the logout file.
 
+    Args:
+        None (None): No input needed.
+
+    Returns:
+        str: return a text of html to be rendered
+    """
+    return make_response(render_template("html/logout.html"))
 
 
 ###############################################################################
@@ -477,6 +589,7 @@ def api_delete_contact():
         200:
             description: The delete contact capture contact detail
     """
+    
     # need to retrieve from session
     userId = 1
 
