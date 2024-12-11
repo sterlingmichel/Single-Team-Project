@@ -5,7 +5,7 @@
           of opensource technology like postgres, python, flask and number plugins
           It is created by Sterling Michel for the CS course
 """
-
+import pydoc
 from flask import (
     Flask,
     url_for,
@@ -30,6 +30,7 @@ from psycopg2.extras import RealDictCursor
 connString = os.environ.get("POSTGRESQL")
 
 name = "Single Team Project"
+
 # create app to use in this Flask application
 app = Flask(name, template_folder="frontend")
 app.secret_key = "&N>_*oZW#G]Bj!M/GS=1dX#8r%0Wp+"

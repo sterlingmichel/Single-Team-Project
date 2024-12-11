@@ -2,6 +2,7 @@ Flask
 flask-restx
 requests
 Gunicorn
+pydoc
 psycopg2-binary==2.9.5
 flask-swagger==0.2.14
 flask-swagger-ui==4.11.1

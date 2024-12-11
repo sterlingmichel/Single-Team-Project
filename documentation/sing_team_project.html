@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Python: module app</title>
+</head><body>
+
+<table class="heading">
+<tr class="heading-text decor">
+<td class="title">&nbsp;<br><strong class="title">app</strong></td>
+<td class="extra"><a href=".">index</a><br><a href="file:/Users/smichel/Projects/Single-Team-Project/backend/app.py">/Users/smichel/Projects/Single-Team-Project/backend/app.py</a></td></tr></table>
+    <p><span class="code">@author:&nbsp;Sterling&nbsp;Michel<br>
+@date:&nbsp;Dec&nbsp;9th,&nbsp;20224<br>
+@desc:&nbsp;This&nbsp;project&nbsp;is&nbsp;designed&nbsp;to&nbsp;demostrate&nbsp;three&nbsp;key&nbsp;features&nbsp;using&nbsp;a&nbsp;range<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;of&nbsp;opensource&nbsp;technology&nbsp;like&nbsp;postgres,&nbsp;python,&nbsp;flask&nbsp;and&nbsp;number&nbsp;plugins<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;It&nbsp;is&nbsp;created&nbsp;by&nbsp;Sterling&nbsp;Michel&nbsp;for&nbsp;the&nbsp;CS&nbsp;course</span></p>
+<p>
+<table class="section">
+<tr class="decor pkg-content-decor heading-text">
+<td class="section-title" colspan=3>&nbsp;<br><strong class="bigsection">Modules</strong></td></tr>
+    
+<tr><td class="decor pkg-content-decor"><span class="code">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td><td>&nbsp;</td>
+<td class="singlecolumn"><table><tr><td class="multicolumn"><a href="os.html">os</a><br>
+</td><td class="multicolumn"><a href="psycopg2.html">psycopg2</a><br>
+</td><td class="multicolumn"><a href="pydoc.html">pydoc</a><br>
+</td><td class="multicolumn"><a href="requests.html">requests</a><br>
+</td></tr></table></td></tr></table><p>
+<table class="section">
+<tr class="decor functions-decor heading-text">
+<td class="section-title" colspan=3>&nbsp;<br><strong class="bigsection">Functions</strong></td></tr>
+    
+<tr><td class="decor functions-decor"><span class="code">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td><td>&nbsp;</td>
+<td class="singlecolumn"><dl><dt><a name="-about"><strong>about</strong></a>()</dt><dd><span class="code">This&nbsp;function&nbsp;show&nbsp;the&nbsp;content&nbsp;of&nbsp;the&nbsp;about&nbsp;file.<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;None&nbsp;(None):&nbsp;No&nbsp;input&nbsp;needed.<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;dict:&nbsp;return&nbsp;a&nbsp;str&nbsp;of&nbsp;html</span></dd></dl>
+ <dl><dt><a name="-api_add_contact"><strong>api_add_contact</strong></a>()</dt><dd><span class="code">&nbsp;This&nbsp;is&nbsp;add&nbsp;contact&nbsp;page&nbsp;of&nbsp;the&nbsp;project&nbsp;that&nbsp;capture&nbsp;the&nbsp;user&nbsp;infomation.<br>
+---<br>
+tags:<br>
+&nbsp;-&nbsp;Initial&nbsp;Route&nbsp;Define<br>
+parameters:<br>
+&nbsp;&nbsp;-&nbsp;in:&nbsp;body<br>
+&nbsp;&nbsp;&nbsp;&nbsp;name:&nbsp;body<br>
+&nbsp;&nbsp;&nbsp;&nbsp;schema:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;type:&nbsp;object<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;properties:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;firstname:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;type:&nbsp;string<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lastname:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;type:&nbsp;string<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;emailAddress:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;type:&nbsp;string<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;phoneNumber:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;type:&nbsp;string<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;address:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;type:&nbsp;string<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;commentInfo:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;type:&nbsp;string<br>
+responses:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;200:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;description:&nbsp;The&nbsp;add&nbsp;contact&nbsp;capture&nbsp;contact&nbsp;detail</span></dd></dl>
+ <dl><dt><a name="-api_delete_contact"><strong>api_delete_contact</strong></a>()</dt><dd><span class="code">&nbsp;This&nbsp;is&nbsp;delete&nbsp;contact&nbsp;page&nbsp;of&nbsp;the&nbsp;project&nbsp;that&nbsp;capture&nbsp;the&nbsp;user&nbsp;infomation.<br>
+---<br>
+tags:<br>
+&nbsp;-&nbsp;Initial&nbsp;Route&nbsp;Define<br>
+parameters:<br>
+&nbsp;&nbsp;-&nbsp;in:&nbsp;body<br>
+&nbsp;&nbsp;&nbsp;&nbsp;name:&nbsp;body<br>
+&nbsp;&nbsp;&nbsp;&nbsp;schema:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;type:&nbsp;object<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;properties:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;id:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;type:&nbsp;string<br>
+responses:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;200:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;description:&nbsp;The&nbsp;delete&nbsp;contact&nbsp;capture&nbsp;contact&nbsp;detail</span></dd></dl>
+ <dl><dt><a name="-api_edit_contact"><strong>api_edit_contact</strong></a>()</dt><dd><span class="code">&nbsp;This&nbsp;is&nbsp;edit&nbsp;contact&nbsp;page&nbsp;of&nbsp;the&nbsp;project&nbsp;that&nbsp;capture&nbsp;the&nbsp;user&nbsp;infomation.<br>
+---<br>
+tags:<br>
+&nbsp;-&nbsp;Initial&nbsp;Route&nbsp;Define<br>
+parameters:<br>
+&nbsp;&nbsp;-&nbsp;in:&nbsp;body<br>
+&nbsp;&nbsp;&nbsp;&nbsp;name:&nbsp;body<br>
+&nbsp;&nbsp;&nbsp;&nbsp;schema:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;type:&nbsp;object<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;properties:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;id:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;type:&nbsp;string<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;firstname:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;type:&nbsp;string<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lastname:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;type:&nbsp;string<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;emailAddress:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;type:&nbsp;string<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;phoneNumber:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;type:&nbsp;string<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;address:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;type:&nbsp;string<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;commentInfo:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;type:&nbsp;string<br>
+responses:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;200:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;description:&nbsp;The&nbsp;edit&nbsp;contact&nbsp;capture&nbsp;contact&nbsp;detail</span></dd></dl>
+ <dl><dt><a name="-api_list_contact"><strong>api_list_contact</strong></a>()</dt><dd><span class="code">This&nbsp;is&nbsp;home&nbsp;page&nbsp;of&nbsp;the&nbsp;project&nbsp;that&nbsp;display&nbsp;the&nbsp;user&nbsp;infomation.<br>
+---<br>
+tags:<br>
+&nbsp;-&nbsp;Initial&nbsp;Route&nbsp;Define<br>
+responses:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;200:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;description:&nbsp;The&nbsp;home&nbsp;display&nbsp;all&nbsp;user&nbsp;detail</span></dd></dl>
+ <dl><dt><a name="-api_login"><strong>api_login</strong></a>()</dt><dd><span class="code">This&nbsp;is&nbsp;login&nbsp;page&nbsp;of&nbsp;the&nbsp;project&nbsp;that&nbsp;capture&nbsp;the&nbsp;user&nbsp;infomation.<br>
+---<br>
+tags:<br>
+&nbsp;-&nbsp;Initial&nbsp;Route&nbsp;Define<br>
+parameters:<br>
+&nbsp;&nbsp;-&nbsp;in:&nbsp;body<br>
+&nbsp;&nbsp;&nbsp;&nbsp;name:&nbsp;body<br>
+&nbsp;&nbsp;&nbsp;&nbsp;schema:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;type:&nbsp;object<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;properties:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;emailaddress:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;type:&nbsp;string<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;password:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;type:&nbsp;string<br>
+responses:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;200:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;description:&nbsp;The&nbsp;singup&nbsp;capture&nbsp;user&nbsp;detail</span></dd></dl>
+ <dl><dt><a name="-api_signup"><strong>api_signup</strong></a>()</dt><dd><span class="code">&nbsp;This&nbsp;is&nbsp;login&nbsp;page&nbsp;of&nbsp;the&nbsp;project&nbsp;that&nbsp;capture&nbsp;the&nbsp;user&nbsp;infomation.<br>
+---<br>
+tags:<br>
+&nbsp;-&nbsp;Initial&nbsp;Route&nbsp;Define<br>
+parameters:<br>
+&nbsp;&nbsp;-&nbsp;in:&nbsp;body<br>
+&nbsp;&nbsp;&nbsp;&nbsp;name:&nbsp;body<br>
+&nbsp;&nbsp;&nbsp;&nbsp;schema:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;type:&nbsp;object<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;properties:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;firstname:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;type:&nbsp;string<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lastname:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;type:&nbsp;string<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;emailAddress:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;type:&nbsp;string<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;phoneNumber:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;type:&nbsp;string<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;password:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;type:&nbsp;string<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;commentInfo:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;type:&nbsp;string<br>
+responses:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;200:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;description:&nbsp;The&nbsp;singup&nbsp;capture&nbsp;user&nbsp;detail</span></dd></dl>
+ <dl><dt><a name="-check"><strong>check</strong></a>()</dt><dd><span class="code">&nbsp;This&nbsp;is&nbsp;validate&nbsp;that&nbsp;the&nbsp;system&nbsp;is&nbsp;running<br>
+---<br>
+tags:<br>
+&nbsp;-&nbsp;Health&nbsp;Check<br>
+responses:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;200:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;description:&nbsp;Check&nbsp;if&nbsp;system&nbsp;is&nbsp;up</span></dd></dl>
+ <dl><dt><a name="-db_insert"><strong>db_insert</strong></a>(sql)</dt><dd><span class="code">This&nbsp;function&nbsp;adds&nbsp;insert&nbsp;the&nbsp;data&nbsp;to&nbsp;the&nbsp;db&nbsp;base&nbsp;on&nbsp;the&nbsp;sql&nbsp;input.<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;sql&nbsp;(str):&nbsp;A&nbsp;series&nbsp;of&nbsp;proper&nbsp;sql&nbsp;insert&nbsp;statment.<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;dict:&nbsp;info&nbsp;field&nbsp;with&nbsp;Information&nbsp;about&nbsp;the&nbsp;action&nbsp;and&nbsp;status&nbsp;field&nbsp;tracking&nbsp;state</span></dd></dl>
+ <dl><dt><a name="-db_test"><strong>db_test</strong></a>()</dt><dd><span class="code">&nbsp;This&nbsp;is&nbsp;validate&nbsp;that&nbsp;the&nbsp;database&nbsp;is&nbsp;running<br>
+---<br>
+tags:<br>
+&nbsp;-&nbsp;Health&nbsp;Check<br>
+responses:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;200:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;description:&nbsp;Database&nbsp;check&nbsp;if&nbsp;it&nbsp;is&nbsp;up&nbsp;and&nbsp;alive</span></dd></dl>
+ <dl><dt><a name="-db_view"><strong>db_view</strong></a>(sql)</dt><dd><span class="code">This&nbsp;function&nbsp;adds&nbsp;select&nbsp;the&nbsp;data&nbsp;from&nbsp;the&nbsp;db&nbsp;base&nbsp;on&nbsp;the&nbsp;sql&nbsp;input.<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;sql&nbsp;(str):&nbsp;A&nbsp;series&nbsp;of&nbsp;proper&nbsp;sql&nbsp;select&nbsp;statment.<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;dict:&nbsp;info&nbsp;field&nbsp;with&nbsp;Information&nbsp;about&nbsp;the&nbsp;action&nbsp;and&nbsp;records&nbsp;field&nbsp;a&nbsp;list&nbsp;of&nbsp;data&nbsp;founds</span></dd></dl>
+ <dl><dt><a name="-home"><strong>home</strong></a>()</dt><dd><span class="code">This&nbsp;function&nbsp;show&nbsp;the&nbsp;content&nbsp;of&nbsp;the&nbsp;home&nbsp;file.<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;None&nbsp;(None):&nbsp;No&nbsp;input&nbsp;needed.<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;dict:&nbsp;return&nbsp;a&nbsp;json&nbsp;of&nbsp;the&nbsp;spec&nbsp;retrieved</span></dd></dl>
+ <dl><dt><a name="-index"><strong>index</strong></a>()</dt><dd><span class="code">This&nbsp;function&nbsp;show&nbsp;the&nbsp;content&nbsp;of&nbsp;the&nbsp;index&nbsp;file.<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;None&nbsp;(None):&nbsp;No&nbsp;input&nbsp;needed.<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;str:&nbsp;return&nbsp;a&nbsp;html&nbsp;file&nbsp;to&nbsp;be&nbsp;render&nbsp;by&nbsp;the&nbsp;browser</span></dd></dl>
+ <dl><dt><a name="-login"><strong>login</strong></a>()</dt><dd><span class="code">This&nbsp;function&nbsp;show&nbsp;the&nbsp;content&nbsp;of&nbsp;the&nbsp;login&nbsp;file.<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;None&nbsp;(None):&nbsp;No&nbsp;input&nbsp;needed.<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;str:&nbsp;return&nbsp;a&nbsp;text&nbsp;of&nbsp;html&nbsp;for&nbsp;the&nbsp;browser</span></dd></dl>
+ <dl><dt><a name="-logout"><strong>logout</strong></a>()</dt><dd><span class="code">This&nbsp;function&nbsp;show&nbsp;the&nbsp;content&nbsp;of&nbsp;the&nbsp;logout&nbsp;file.<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;None&nbsp;(None):&nbsp;No&nbsp;input&nbsp;needed.<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;str:&nbsp;return&nbsp;a&nbsp;text&nbsp;of&nbsp;html&nbsp;to&nbsp;be&nbsp;rendered</span></dd></dl>
+ <dl><dt><a name="-serve_web_folder"><strong>serve_web_folder</strong></a>(filename)</dt><dd><span class="code">This&nbsp;function&nbsp;adds&nbsp;select&nbsp;the&nbsp;data&nbsp;from&nbsp;the&nbsp;db&nbsp;base&nbsp;on&nbsp;the&nbsp;sql&nbsp;input.<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;filename&nbsp;(str):&nbsp;capture&nbsp;the&nbsp;filename<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;dict:&nbsp;info&nbsp;field&nbsp;with&nbsp;Information&nbsp;about&nbsp;the&nbsp;action&nbsp;and&nbsp;records&nbsp;field&nbsp;a&nbsp;list&nbsp;of&nbsp;data&nbsp;founds</span></dd></dl>
+ <dl><dt><a name="-signup"><strong>signup</strong></a>()</dt><dd><span class="code">This&nbsp;function&nbsp;show&nbsp;the&nbsp;content&nbsp;of&nbsp;the&nbsp;signup&nbsp;file.<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;None&nbsp;(None):&nbsp;No&nbsp;input&nbsp;needed.<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;dict:&nbsp;return&nbsp;a&nbsp;str&nbsp;html</span></dd></dl>
+ <dl><dt><a name="-spec"><strong>spec</strong></a>()</dt><dd><span class="code">This&nbsp;function&nbsp;show&nbsp;the&nbsp;content&nbsp;of&nbsp;the&nbsp;spec&nbsp;file.<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;None&nbsp;(None):&nbsp;No&nbsp;input&nbsp;needed.<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;dict:&nbsp;return&nbsp;a&nbsp;json&nbsp;of&nbsp;the&nbsp;spec&nbsp;retrieved</span></dd></dl>
+</td></tr></table><p>
+<table class="section">
+<tr class="decor data-decor heading-text">
+<td class="section-title" colspan=3>&nbsp;<br><strong class="bigsection">Data</strong></td></tr>
+    
+<tr><td class="decor data-decor"><span class="code">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td><td>&nbsp;</td>
+<td class="singlecolumn"><strong>API_URL</strong> = '/spec'<br>
+<strong>SWAGGER_URL</strong> = '/api/docs'<br>
+<strong>app</strong> = &lt;Flask 'Single Team Project'&gt;<br>
+<strong>bcrypt</strong> = &lt;flask_bcrypt.Bcrypt object&gt;<br>
+<strong>connString</strong> = 'postgresql://single_project_postgres_db_user:SCs...on-postgres.render.com/single_project_postgres_db'<br>
+<strong>name</strong> = 'Single Team Project'<br>
+<strong>request</strong> = &lt;LocalProxy unbound&gt;<br>
+<strong>session</strong> = &lt;LocalProxy unbound&gt;<br>
+<strong>swaggerui_blueprint</strong> = &lt;Blueprint 'swagger_ui'&gt;</td></tr></table>
+</body></html>
